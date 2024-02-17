@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";   //create links for navigating to othe
 
 import { demoProfilePicture } from "../utils/constants";
 
-const ChannelCard = ({ channelDetail}) => (
+const ChannelCard = ({ channelDetail,marginTop}) => (
   <Box
    sx={{
      boxShadow: 'none',
@@ -19,7 +19,10 @@ const ChannelCard = ({ channelDetail}) => (
      alignItems: 'center',
      width : {xs : '356px', md : '320px'},
      height: '326px',
-     margin: 'auto'
+     margin: 'auto',
+     marginTop,
+     //This is because if we update it here only then it will update on home page also, but we only want it on the channel page to be uplifted by 100px
+     //can write it as marginTop: marginTop also
    }}
   >
     <Link to={`/channel/${channelDetail?.id?.channelId}`}>

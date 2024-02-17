@@ -11,12 +11,14 @@ import { demoThumbnailUrl , demoVideoUrl , demoVideoTitle , demoChannelUrl , dem
 const VideoCard = ({video : {id : {videoId},snippet } }) => {
   return (
     // The Link tag creates a clickable link if video id exists otherwise it will redirect to the demo video page.
-    <Card sx={{width : {md : '320px' , xs : '100%'},boxShadow:'none' , borderRadius : 0}}>
+    <Card sx={{width : {xs : '100%', sm:'358px', md : '320px' },boxShadow:'none' , borderRadius : 0}}>
       <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
       <CardMedia 
             image={snippet?.thumbnails?.high?.url}             //It is extracted from the snippet object, specifically from the thumbnails property, then the high property, and finally, the url property. The ?. is the optional chaining operator, ensuring that if any intermediate property is null or undefined, the whole expression will gracefully return undefined instead of causing an error.
             alt= {snippet?.title} 
-            sx={{width: 358 , height: 180}}/>
+            sx={{width: {
+              xs: '100%' , sm: '358px', md:'320px'
+            } , height: 180}}/>
       </Link>
       <CardContent sx={{backgroundColor:'#1e1e1e',height: '106px'}}>
       <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>

@@ -4,10 +4,24 @@ import {Paper , IconButton} from '@mui/material'; //simple div having white bg a
 import {Search} from '@mui/icons-material';
 
 const SearchBar = () => {
+  const [searchTerm , setSearchTerm ] = useState('');
+
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();            //by deafult the form submits and reloads the page
+    
+    if(searchTerm) {
+      navigate(`search/${searchTerm}`);
+
+      setSearchTerm('');
+    }
+  }
+
   return (
     <Paper
        component="form"
-       onSubmit={() => {}}  //leave as an empty callback function
+       onSubmit={handleSubmit}  //callback function
        sx={{    //with sx we can provide any styles to our materail UI
         borderRadius: 20,
         border: '1px solid #e3e3e3',
@@ -18,8 +32,8 @@ const SearchBar = () => {
        >
      <input className='search-bar'
             placeholder='Search your video...'
-            value=""
-            onChange={() => {}}/>
+            value={searchTerm}
+            onChange={(e) => {setSearchTerm(e.target.value)}}/>
       <IconButton type="submit" sx={{p:'10px',color:'red'}}>
         <Search />
       </IconButton>
